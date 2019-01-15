@@ -1,23 +1,4 @@
 <html>
-    
-<script>
-    function startTime() {
-  var today = new Date();
-  var h = today.getHours();
-  var m = today.getMinutes();
-  var s = today.getSeconds();
-  m = checkTime(m);
-  s = checkTime(s);
-  document.getElementById('txt').innerHTML =
-  h + ":" + m + ":" + s;
-  var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
-    </script> 
-    
 <header>
 <style>
 
@@ -33,10 +14,7 @@ h1 {
 }
 
 p1 {
-    margin-top: 10;
-    top: 20;
-}
-    
+    }
 p2 {
     top: 200;
     margin-left: 625;
@@ -113,27 +91,24 @@ img{
 </style>
 </header>
     
-<body onload ="startTime">
-<div id="txt"></div>
+<body>
+
 <h1> <b> Krishna Bambawale's Website</b></h1>
-   <p1> 
-       <iframe src="http://free.timeanddate.com/clock/i6l7cw58/n250/fn5/fs18/bas2/pa0/tt0/td1/tb1" frameborder="0" width="1425" height="26"></iframe>
+   <p1> <iframe src="http://free.timeanddate.com/clock/i6l7cw58/n250/fn5/fs18/bas2/pa0/tt0/td1/tb1" frameborder="0" width="1425" height="26"> </iframe>
     </p1>
-    
-
-
 
 <ul>
   <li><a class="active" href="http://127.0.0.1:54463/index.html">Home</a></li>
-  <li><a href="#news">Weekly News</a></li>
-    <li><a href="#writing">Writing </a></li>
+  <li><a href="http://127.0.0.1:54463/index.html">Weekly News</a></li>
+    <li><a href="http://127.0.0.1:54463/index.html">Writing </a></li>
     <li><a href="http://127.0.0.1:54463/sports.html">Sports </a></li>
     <li><a href="https://powrpac.wixsite.com/japowrpac">Ventures</a></li>
-    <li><a href="#travels">Travels</a></li>
-    <li><a href="#photography">Photography</a></li>
-  <li><a href="#contact">Contact </a></li>
+    <li><a href="http://127.0.0.1:54463/index.html">Travels</a></li>
+    <li><a href="http://127.0.0.1:54463/index.html">Photography</a></li>
+  <li><a href="http://127.0.0.1:54463/index.html">Contact </a></li>
 <li style="float:right"><a class="active" href="http://127.0.0.1:54463/abouttheauthor.html">About The Author</a></li></ul>
     
+
     
 <p2> <b> Homepage </b> <br></p2>
 <p3> Select any of the options in the navigation bar to further explore the website. <br> </p3>
@@ -153,4 +128,3 @@ img{
 
 </body>
 </html>
-
