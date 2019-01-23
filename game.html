@@ -1,0 +1,188 @@
+<html>
+<head>
+<style>
+canvas {
+    border:1px solid #d3d3d3;
+    background-image: url("https://www.worldatlas.com/r/w728-h425-c728x425/upload/32/ed/dd/shutterstock-611361698.jpg");
+}
+body {
+    background-color: aqua;
+    background-size: cover;
+}
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  color: black;
+  text-align: center;
+    font-family: inherit;
+    font-style: oblique;
+    font-size: 40px;
+    border:2px solid white;
+}
+
+p {
+    color: black;
+  font-family: inherit;
+  font-size: 15px;
+    text-align: center;
+}
+</style>
+</head>
+<body onload="startGame()">
+<script>
+
+var blueGamePiece;
+var blackGamePiece;
+var myObstacles = [];
+var myScore;
+
+
+function startGame() {
+    blueGamePiece = new component(20, 20, "blue", 570, 120);
+    blackGamePiece = new component(20, 20, "black", 10, 120);
+    myGameArea.start();
+}
+    
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 600;
+        this.canvas.height = 400;
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.frameNo = 0;
+        this.interval = setInterval(updateGameArea, 20);
+        },
+    clear : function() {
+        this.context.clearRect(1000, 1000, this.canvas.width, this.canvas.height);
+    }
+}
+
+function component(width, height, color, x, y, type) {
+    this.type = type;
+    this.width = width;
+    this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;    
+    this.x = x;
+    this.y = y;    
+    this.update = function() {
+        ctx = myGameArea.context;
+        if (this.type == "text") {
+            ctx.font = this.width + " " + this.height;
+            ctx.fillStyle = color;
+            ctx.fillText(this.text, this.x, this.y);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+    }
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY;        
+    }
+
+}
+
+function updateGameArea() {
+    var x, height, gap, minHeight, maxHeight, minGap, maxGap;
+    for (i = 0; i < myObstacles.length; i += 1) {
+    }
+    myGameArea.clear();
+    myGameArea.frameNo += 1;
+    if (myGameArea.frameNo == 1 || everyinterval(150)) {
+        x = myGameArea.canvas.width;
+        minHeight = 20;
+        maxHeight = 200;
+        height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+        minGap = 50;
+        maxGap = 200;
+        gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+
+    }
+
+    blueGamePiece.newPos();    
+    blueGamePiece.update();
+    blackGamePiece.newPos();
+    blackGamePiece.update();
+}
+
+function everyinterval(n) {
+    if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
+    return false;
+}
+
+function clearmove() {
+    blackGamePiece.speedX = 0; 
+    blackGamePiece.speedY = 0; 
+    blueGamePiece.speedX = 0; 
+    blueGamePiece.speedY = 0; 
+}
+
+    
+    
+ window.onkeyup = function (e) {
+    var code = e.keyCode ? e.keyCode : e.which;
+    if (code === 38) { //up key
+        blueGamePiece.speedY = -1; 
+        blueGamePiece.speedX = 0;
+        if ( this.x > this.width) {
+            this.x -= this.width;
+        }
+     
+    } else if (code === 40) { //down key
+        blueGamePiece.speedY = 1; 
+        blueGamePiece.speedX = 0;
+
+    }
+    if (code === 37) { //left key
+        blueGamePiece.speedX = -1;
+        blueGamePiece.speedY = 0;
+    } else if (code === 39) { //right key
+        blueGamePiece.speedX = 1; 
+        blueGamePiece.speedY = 0;
+    }
+}
+
+  window.onkeydown = function (e) {
+    var code = e.keyCode ? e.keyCode : e.which;
+    if (code === 87) { //w key
+        blackGamePiece.speedY = -1; 
+        blackGamePiece.speedX = 0;
+
+    } else if (code === 83) { //s key
+        blackGamePiece.speedY = 1; 
+        blackGamePiece.speedX = 0;
+
+    }
+    if (code === 65) { //a key
+        blackGamePiece.speedX = -1;
+        blackGamePiece.speedY = 0;
+    } else if (code === 68) { //d key
+        blackGamePiece.speedX = 1; 
+        blackGamePiece.speedY = 0;
+    }
+}
+ 
+ 
+    
+</script>
+<center>
+<div style="text-align:center;width:480px;">
+  <button onmousedown="clearmove()" onmouseup="clearmove()" ontouchstart="clearmove()">Pause</button><br><br>
+</div>
+    
+<p> <b> Instructions </b>
+    <br>
+    Use WASD for the Black Rectange and the Arrow Keys for the Blue Rectangle. Click Pause to Temporarily stop the game.
+    <br>
+    This is my basic Javascript game. It doesn't have much purpose, however be creative and make of it what you will. Think of it as a paintbrush on an untouched Canvas, similar to an Etch a Sketch. There are no borders, literally. </p>
+</center>
+</body>
+</html>
+
+
